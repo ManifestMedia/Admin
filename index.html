@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--css libs-->
+    <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
+
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="app/assets/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="app/assets/lineicons/style.css">
+    <link rel="stylesheet" type="text/css" href="app/assets/js/gritter/css/jquery.gritter.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="/app/assets/css/style.css" rel="stylesheet">
+    <link href="/app/assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="adminClient">
+	<section id="container">
+		<!-- TOP BAR CONTENT & NOTIFICATIONS -->
+	  <!--header start-->
+	  <header class="header black-bg">
+	    <div class="sidebar-toggle-box">
+	        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+	    </div>
+	    <!--logo start-->
+	    <a href="index.html" class="logo"><b>MANIFEST ADMIN</b></a>
+	    <!--logo end-->
+	    <div class="top-menu">
+	    	<ul class="nav pull-right top-menu">
+	        <li><a class="btn btn-default btn-topbar" href="#/profile">My profile</a></li>
+	        <li><a class="btn btn-default btn-topbar" href="/login/">Logout</a></li>
+	    	</ul>
+	    </div>
+	  </header>
+	  <!--header end-->
+
+	  <!-- MAIN SIDEBAR MENU -->
+	  <!--sidebar start-->
+	  <aside>
+	    <div id="sidebar"  class="nav-collapse ">
+	      <!-- sidebar menu start-->
+	      <ul class="sidebar-menu" id="nav-accordion">
+	    	  <p class="centered"><a href="#/profile"><img src="/app/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+	    	  <h5 class="centered">Simun Strukan</h5>
+	        <li class="mt">
+	          <a href="#/dashboard">
+	            <i class="fa fa-dashboard"></i>
+	            <span>Dashboard</span>
+	          </a>
+	        </li>
+	        <li class="">
+	          <a href="#/pages" >
+	         		<i class="fa fa-list-alt"></i>
+	            <span>Pages</span>
+	          </a>
+	        </li>
+	        <li class="">
+	          <a href="#/articles" >
+	            <i class="fa fa-pencil"></i>
+	            <span>Articles</span>
+	          </a>
+	        </li>
+	        <li class="">
+	          <a href="#/settings" >
+	            <i class="fa fa-gears"></i>
+	            <span>Settings</span>
+	          </a>
+	        </li>
+	        <li class="">
+	          <a href="#/users" >
+	            <i class="fa fa-users"></i>
+	            <span>Users</span>
+	          </a>
+	        </li>
+	      </ul>
+	      <!-- sidebar menu end-->
+	    </div>
+	  </aside>
+	  <!--sidebar end-->
+
+	  <!-- MAIN CONTENT ANGULAR VIEW -->
+	  <section id="main-content">
+	  	<div ng-view class="container-fluid"></div>
+	  </section>
+	</section>
+	<footer>
+
+		<!-- js libs -->
+		<script src="app/assets/js/jquery.js"></script>
+    <script src="app/assets/js/bootstrap.min.js"></script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+
+    <!-- Froala files -->
+	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/font-awesome.min.css" />
+	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_content.min.css" />
+	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_editor.min.css" />
+	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_style.min.css" />
+
+	  <script src="app/assets/froalaTextEditor/js/froala_editor.min.js"></script>
+
+		<!-- Froala Plugins -->
+	  <script src="app/assets/froalaTextEditor/js/plugins/tables.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/video.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/block_styles.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/colors.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/media_manager.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/lists.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/font_family.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/font_size.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/file_upload.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/urls.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/fullscreen.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/inline_styles.min.js"></script>
+	  <script src="app/assets/froalaTextEditor/js/plugins/char_counter.min.js"></script>
+
+    <script src="app/assets/froalaTextEditor/js/angular-froala.js"></script>
+    <script src="app/assets/froalaTextEditor/js/froala-sanitize.js"></script>
+
+
+    <!--  angular app -->
+    <script src="admin.js"></script>
+
+    <!-- angular common -->
+		<script src="app/common/directives/ngLink.js"></script>
+
+		<!-- angular pages -->
+    <script src="dashboard/dashboard.ctrl.js"></script>
+    <script src="articles/articles.ctrl.js"></script>
+    <script src="pages/pages.ctrl.js"></script>
+    <script src="profile/profile.ctrl.js"></script>
+    <script src="settings/settings.ctrl.js"></script>
+    <script src="users/users.ctrl.js"></script>
+	</footer>
+</body>
+</html>

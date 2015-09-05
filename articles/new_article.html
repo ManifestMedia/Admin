@@ -1,0 +1,101 @@
+<section class="wrapper">
+  <div class="row">
+      <div class="col-lg-12 main-chart">
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <h2>New Article</h2>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-8">
+            <div class="btn-group pull-right" style="margin-top: 20px">
+              <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
+              <button type="button" class="btn btn-default" ng-link="/new_user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
+            </div>
+          </div>
+        </div>
+        <div class="row mtbox">
+          <div class="col-md-9">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a data-target="#tab-content" data-toggle="tab">Content</a>
+              </li>
+              <li>
+                <a data-target="#tab-images" data-toggle="tab">Images</a>
+              </li>
+              <li>
+                <a data-target="#tab-files" data-toggle="tab">Files</a>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div id="tab-content" class="tab-pane active">
+                <form class="form-panel quick-post">
+                  <label style="margin: 15px 0 30px 0"> 
+                    <input ng-model="articles.title" type="text" placeholder="Article title ..." class="form-control article-title pull-left" />
+                  </label>
+                  <h5>Front Matter:</h5>
+                  <textarea class="form-control article-content" froala="articles.frontMatterEditorOptions" ng-model="articles.frontMatterContent">{{articles.frontMatterContent}}</textarea>
+
+                  <h5>Main Matter:</h5>
+                  <textarea class="form-control article-content" froala="articles.mainMatterEditorOptions" ng-model="articles.mainMatterContent">{{articles.mainMatterContent}}</textarea>
+
+                  <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp Save article</button>
+
+                  <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-cloud-upload"></i> &nbsp Publish article</button>
+                </form>
+              </div>
+
+              <div id="tab-images" class="tab-pane">
+                <form class="form-panel quick-post">
+                  <h5>Article header:</h5>
+                    <input type="file"  style="margin-top: 20px;" />
+                    <img src="app/assets/img/images-placeholder.png" alt="Website header" width="640px" class="img-rounded" style="display: block; margin: 20px auto;">
+                    <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-cloud-upload"></i> &nbsp Upload header</button>
+                  </form>
+              </div>
+              
+              <div id="tab-files" class="tab-pane">
+                <form class="form-panel quick-post">
+                  <h5>Files</h5>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+          
+          <div class="col-md-3 options">
+            <form class="form-panel quick-post" style="margin-top: 40px;">
+              <h3>Show in page</h3>
+              <select class="form-control select-page" style="width: 100%; margin: 25px 0 25px 0;">
+                <option>Home</option>
+                <option>About</option>
+                <option>Contact</option>
+                <option>Impressum</option>
+              </select>
+              
+              <h3>Languages</h3>
+              <div class="languages-selected">
+
+                <p class="inline-block">English</p>
+                <button class="btn btn-danger btn-xs inline-block pull-right">
+                  <i class="fa fa-minus-circle" style="margin-top: 4px;"></i>
+                </button>
+
+              </div>
+              <select ng-model="articles.language" class="form-control" style="width: 100%; margin: 25px 0 15px 0;">
+                <option ng-repeat="language in articles.languages" value="{{language.id}}">{{language.name}}</option>
+              </select>
+              <button ng-click="articles.addLanguage" style="margin: 5px 0 25px 0" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
+            </form>
+          </div>
+        </div>      
+    
+
+        
+
+      </div>
+  </div>
+</section>
+
+
+
