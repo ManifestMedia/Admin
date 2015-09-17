@@ -1,0 +1,63 @@
+<section class="wrapper">
+	<div class="row">
+	    <div class="col-lg-12 main-chart">
+	      <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-4">
+            <h2 ng-show="users.userId == null">Add new user</h2>
+            <h2 ng-show="users.userId != null">Edit user</h2>
+          </div>
+          <div class="col-lg-9 col-md-8 col-sm-8">
+            <div class="btn-group pull-right" style="margin-top: 20px">
+              <button type="button" class="btn btn-default" ng-link="/article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
+						  <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
+						  <button type="button" class="btn btn-default" ng-link="/user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
+            </div>
+          </div>
+        </div>
+	      
+	      <div class="row mtbox">
+	        <div class="col-md-6 col-md-offset-3">
+	        	<form novalidate name="userInfo" class="form-panel quick-post">
+	            
+	            <h3>Personal information:</h3>
+	            
+	            <div class="input-wrapper">
+	            	<input ng-model="users.firstName" name="firstName" type="text" placeholder="First Name..." class="form-control" /> 	
+	            </div>
+
+	            <div class="input-wrapper">
+	            	<input ng-model="users.lastName" type="text" placeholder="Last Name..." class="form-control" />
+	            </div>
+
+	            <div class="input-wrapper">
+	            	<input ng-model="users.email" type="text" placeholder="Email..." class="form-control" />
+	            </div>
+
+	            <div class="input-wrapper">
+	            	<input ng-model="users.secondaryEmail" type="text" placeholder="Secondary Email..." class="form-control" />
+	            </div>
+	            
+	            <button ng-click="users.saveUser(users.userId)" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> {{users.submitButtonTitle}}</button>
+	          </form>
+
+	          <form name="user-password" class="form-panel quick-post" style="margin-top: 30px;">
+	            
+	            <h3>Change password: </h3>
+
+	            <div class="input-wrapper">
+	            	<input ng-model="users.password" type="password" placeholder="New Password" class="form-control" />
+	            </div>
+
+	            <div class="input-wrapper">
+	            	<input ng-model="users.passwordConfirm" type="password" placeholder="Confirm New Password" class="form-control" />
+	            </div>
+	            
+	            <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> Change</button>
+	          </form>
+
+	        </div>
+	      </div>
+
+	  </div>
+	</div>
+</section>

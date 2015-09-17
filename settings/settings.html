@@ -7,22 +7,38 @@
           </div>
           <div class="col-lg-9 col-md-8 col-sm-8">
             <div class="btn-group pull-right" style="margin-top: 20px">
-              <button type="button" class="btn btn-default" ng-link="/new_article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
+              <button type="button" class="btn btn-default" ng-link="/article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
               <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
-              <button type="button" class="btn btn-default" ng-link="/new_user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
+              <button type="button" class="btn btn-default" ng-link="/user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
             </div>
           </div>
         </div>
 	      <div class="row mtbox">
-	        <div class="col-md-12">
+	        <div class="col-md-9">
 	          <form class="form-panel quick-post">
-	            <input type="text" placeholder="Website title ..." class="form-control" style="width: 70%; margin-top: 10px; " />
+	            <input ng-model="settings.websiteTitle" type="text" placeholder="Website title ..." class="form-control" style="width: 70%; margin-top: 10px; " />
 	            <h3>Website header:</h3>
 	            <input type="file"  style="margin-top: 20px;" />
-	            <img src="app/assets/img/images-placeholder.png" alt="Website header" width="640px" class="img-rounded" style="display: block; margin: 20px auto;">
-	            <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp Save</button>
+	            <img src="app/assets/img/images-placeholder.png" alt="Website header" width="540px" class="img-rounded" style="display: block; margin: 20px auto;">
+	            <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> &nbsp Save</button>
 	          </form>
 	        </div>
+
+	        <div class="col-md-3 options">
+				    <form class="form-panel quick-post">
+				      <h3>Languages</h3>
+				      <div ng-repeat="language in settings.languages" class="languages-selected">
+				        <p class="inline-block">{{language.name}}</p>
+				        <button ng-click="settings.removeLanguage(language)" class="btn btn-danger btn-xs inline-block pull-right">
+				          <i class="fa fa-minus-circle" style="margin-top: 4px;"></i>
+				        </button>
+				      </div>
+				      <select ng-model="settings.language" class="form-control" style="width: 100%; margin: 25px 0 15px 0;">
+				        <option ng-repeat="language in settings.availableLanguages" value="{{language.code}}">{{language.name}}</option>
+				      </select>
+				      <button ng-click="settings.addLanguage()" style="margin: 5px 0 25px 0" class="btn btn-primary btn-sm btn-block"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
+				    </form>
+				  </div>
 	      </div>
 	  </div>
 	</div>

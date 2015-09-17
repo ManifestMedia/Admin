@@ -1,0 +1,7 @@
+{
+  "config": {
+    "debug": true,
+    "adminInstaled": true,
+    "host": ""
+  }
+}

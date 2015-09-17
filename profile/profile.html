@@ -7,9 +7,9 @@
           </div>
           <div class="col-lg-9 col-md-8 col-sm-8">
             <div class="btn-group pull-right" style="margin-top: 20px">
-              <button type="button" class="btn btn-default" ng-link="/new_article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
+              <button type="button" class="btn btn-default" ng-link="/article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
 						  <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
-						  <button type="button" class="btn btn-default" ng-link="/new_user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
+						  <button type="button" class="btn btn-default" ng-link="/user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
             </div>
           </div>
         </div>
@@ -18,39 +18,39 @@
 	          <form class="form-panel quick-post">
 	            <h3>Personal information:</h3>
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="First Name..." class="form-control" /> 	
+	            	<input ng-model="profile.firstName" type="text" placeholder="First Name..." class="form-control" /> 	
 	            </div>
 
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="Last Name..." class="form-control" />
+	            	<input ng-model="profile.lastName" type="text" placeholder="Last Name..." class="form-control" />
 	            </div>
 
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="Email..." class="form-control" />
+	            	<input ng-model="profile.email" type="text" placeholder="Email..." class="form-control" />
 	            </div>
 
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="Secondary Email..." class="form-control" />
+	            	<input ng-model="profile.secondaryEmail" type="text" placeholder="Secondary Email..." class="form-control" />
 	            </div>
 	            
-	            <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> Update</button>
+	            <button ng-click="profile.save()" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> Update</button>
 	          </form>
 
 	          <form class="form-panel quick-post" style="margin-top: 30px;">
 	            <h3>Change password</h3>
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="Password" class="form-control" /> 	
+	            	<input type="password" placeholder="Password" class="form-control" /> 	
 	            </div>
 
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="New Password" class="form-control" />
+	            	<input type="password" placeholder="New Password" class="form-control" />
 	            </div>
 
 	            <div class="input-wrapper">
-	            	<input type="text" placeholder="Confirm New Password" class="form-control" />
+	            	<input type="password" placeholder="Confirm New Password" class="form-control" />
 	            </div>
 	            
-	            <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> Change</button>
+	            <button ng-click="profile.changePassword()" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> Change</button>
 	          </form>
 
 	        </div>

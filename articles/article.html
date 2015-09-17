@@ -7,6 +7,7 @@
           </div>
           <div class="col-lg-9 col-md-8 col-sm-8">
             <div class="btn-group pull-right" style="margin-top: 20px">
+              <button type="button" class="btn btn-default" ng-link="/article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
               <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
               <button type="button" class="btn btn-default" ng-link="/new_user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
             </div>
@@ -38,9 +39,9 @@
                   <h5>Main Matter:</h5>
                   <textarea class="form-control article-content" froala="articles.mainMatterEditorOptions" ng-model="articles.mainMatterContent">{{articles.mainMatterContent}}</textarea>
 
-                  <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp Save article</button>
+                  <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> &nbsp Save article</button>
 
-                  <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-cloud-upload"></i> &nbsp Publish article</button>
+                  <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-cloud-upload"></i> &nbsp Publish article</button>
                 </form>
               </div>
 
@@ -85,7 +86,7 @@
               <select ng-model="articles.language" class="form-control" style="width: 100%; margin: 25px 0 15px 0;">
                 <option ng-repeat="language in articles.languages" value="{{language.id}}">{{language.name}}</option>
               </select>
-              <button ng-click="articles.addLanguage" style="margin: 5px 0 25px 0" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
+              <button ng-click="articles.addLanguage" style="margin: 5px 0 25px 0" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
             </form>
           </div>
         </div>      

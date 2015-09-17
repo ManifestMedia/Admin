@@ -5,17 +5,14 @@
     .directive('ngSidebar', ngSidebar);
 
   function ngSidebar($location) {
+    var open = true
     var directive = {
       link: link
     }
     return directive 
 
     function link ( scope, element, attrs ) {
-      var open = true
-
       $("#toggle-sidebar").bind( 'click', function () {
-        open = !open
-
         if(open){
           element.find("span").fadeOut(100)
           element.find("h5").fadeOut(100, function(){
@@ -23,8 +20,6 @@
             element.animate({"width" : "60px"})
             $("#main-content").animate({"margin-left" : "60px"})  
           })
-          
-
         }
         else {
           element.animate({"width" : "210px"}, function(){
@@ -34,9 +29,8 @@
           })
           $("#main-content").animate({"margin-left" : "210px"})   
         }
+        open = !open
       });
-
-      console.log("Status " + status)
     };
   }
 })()

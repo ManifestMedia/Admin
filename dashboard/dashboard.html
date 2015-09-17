@@ -7,9 +7,9 @@
         </div>
         <div class="col-lg-9 col-md-8 col-sm-8">
           <div class="btn-group pull-right" style="margin-top: 20px">
-            <button type="button" class="btn btn-default" ng-link="/new_article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
+            <button type="button" class="btn btn-default" ng-link="/article"><i class="fa fa-pencil" style="margin-right: 5px;"></i>  New article</button>
             <button type="button" class="btn btn-default" ng-link="/pages"><i class="fa fa-list-alt" style="margin-right: 5px;"></i>  New page</button>
-            <button type="button" class="btn btn-default" ng-link="/new_user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
+            <button type="button" class="btn btn-default" ng-link="/user"><i class="fa fa-user" style="margin-right: 5px;"></i>  New user</button>
           </div>
         </div>
       </div>
@@ -19,23 +19,23 @@
         <div class="col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-3 box0">
           <div class="box1">
             <span class="li_news"></span>
-            <h3>10</h3>
+            <h3>{{dashboard.articlesCount}}</h3>
           </div>
-          <p>There are 10 articles total on your website.</p>
+          <p>There are {{dashboard.articlesCount}} articles total on your website.</p>
         </div>
         <div class="col-md-2 col-sm-2 box0">
           <div class="box1">
             <span class="li_user"></span>
-            <h3>6</h3>
+            <h3>{{dashboard.usersCount}}</h3>
           </div>
-          <p>There are 6 user profiles total on your website.</p>
+          <p>There are {{dashboard.usersCount}} user profiles total on your website.</p>
         </div>
         <div class="col-md-2 col-sm-2 box0">
           <div class="box1">
             <span class="li_note"></span>
-            <h3>5</h3>
+            <h3>{{dashboard.pagesCount}}</h3>
           </div>
-          <p>Your website has 5 pages in total!</p>
+          <p>Your website has {{dashboard.pagesCount}} pages in total!</p>
         </div>
       </div>
 
@@ -54,19 +54,16 @@
             
             <div class="row" style="margin-bottom: 25px;">
               <div class="col-md-6">
-                <input type="text" placeholder="Article title ..." class="form-control article-title pull-left select-page" />  
+                <input ng-model="dashboard.quickPostTitle" type="text" placeholder="Article title ..." class="form-control article-title pull-left select-page" />  
               </div>
               <div class="col-md-6">
-                <select class="form-control">
-                  <option>Home</option>
-                  <option>About</option>
-                  <option>Contact</option>
-                  <option>Impressum</option>
+                <select ng-model="dashboard.addToPage" class="form-control">
+                  <option ng-repeat="page in dashboard.pages">{{page.title}}</option>
                 </select>
               </div>
             </div>
             <textarea class="form-control article-content" rows="25" style="margin-top: 25px" froala="dashboard.quickPostEditorOptions" ng-model="dashboard.quickPostContent">{{dashboard.quickPostContent}}</textarea>
-            <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i> &nbsp Save article</button>
+            <button ng-click="dashboard.saveQuickPost()" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> &nbsp Save article</button>
           </form>
         </div>
       </div>
@@ -90,55 +87,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><a href="basic_table.html#">Bakin recepis</a></td>
-              <td class="hidden-phone">Šimun Strukan</td>
-              <td>21.09.2015, 18:35</td>
-              <td><span class="label label-info label-mini">Home</span></td>
+            <tr ng-repeat="article in dashboard.articles">
+              <td><a href="basic_table.html#">{{article.title}}</a></td>
+              <td class="hidden-phone">{{article.author}}</td>
+              <td>{{article.date}}</td>
+              <td><span class="label label-info label-mini">{{article.page}}</span></td>
               <td>
-                 <div class="switch switch-square"
-                     data-on-label="<i class=' fa fa-check'></i>"
-                     data-off-label="<i class='fa fa-times'></i>">
-                    <input type="checkbox" />
-                </div>
-
+                 <switch id="enabled" name="enabled" ng-model="article.published" class="green"></switch>
               </td>
               <td>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td><a href="basic_table.html#">Bakin recepis</a></td>
-              <td class="hidden-phone">Šimun Strukan</td>
-              <td>21.09.2015, 18:35</td>
-              <td><span class="label label-info label-mini">Home</span></td>
-              <td><input type="checkbox" value=""></td>
-              <td>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td><a href="basic_table.html#">Bakin recepis</a></td>
-              <td class="hidden-phone">Šimun Strukan</td>
-              <td>21.09.2015, 18:35</td>
-              <td><span class="label label-info label-mini">Home</span></td>
-              <td><input type="checkbox" value=""></td>
-              <td>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-              </td>
-            </tr>
-            <tr>
-              <td><a href="basic_table.html#">Bakin recepis</a></td>
-              <td class="hidden-phone">Šimun Strukan</td>
-              <td>21.09.2015, 18:35</td>
-              <td><span class="label label-info label-mini">Home</span></td>
-              <td><input type="checkbox" value=""></td>
-              <td>
-                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                <button ng-link="edit_article/{{article.id}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                <button ng-click="dashboard.deleteArticle(article.id)"class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
               </td>
             </tr>
           </tbody>
@@ -162,55 +121,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><a href="basic_table.html#">Home</a></td>
-            <td class="hidden-phone">Šimun Strukan</td>
-            <td>21.09.2015, 18:35</td>
-            <td>1</td>
+          <tr ng-repeat="page in dashboard.pages">
+            <td><a href="basic_table.html#">{{page.title}}</a></td>
+            <td class="hidden-phone">{{page.author}}</td>
+            <td>{{page.date}}</td>
+            <td>{{page.articlesCount}}</td>
             <td>
-               <div class="switch switch-square"
-                   data-on-label="<i class=' fa fa-check'></i>"
-                   data-off-label="<i class='fa fa-times'></i>">
-                  <input type="checkbox" />
-              </div>
-
+               <switch id="enabled" name="enabled" ng-model="page.published" class="green"></switch>
             </td>
             <td>
-              <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-              <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="basic_table.html#">About</a></td>
-            <td class="hidden-phone">Šimun Strukan</td>
-            <td>21.09.2015, 18:35</td>
-            <td>1</td>
-            <td><input type="checkbox" value=""></td>
-            <td>
-              <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-              <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="basic_table.html#">Contact</a></td>
-            <td class="hidden-phone">Šimun Strukan</td>
-            <td>21.09.2015, 18:35</td>
-            <td>1</td>
-            <td><input type="checkbox" value=""></td>
-            <td>
-              <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-              <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-            </td>
-          </tr>
-          <tr>
-            <td><a href="basic_table.html#">Impressum</a></td>
-            <td class="hidden-phone">Šimun Strukan</td>
-            <td>21.09.2015, 18:35</td>
-            <td>1</td>
-            <td><input type="checkbox" value=""></td>
-            <td>
-              <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-              <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+              <button ng-link="/pages/{{page.id}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+              <button ng-click="dashboard.deletePage(page.id)" class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
             </td>
           </tr>
         </tbody>
