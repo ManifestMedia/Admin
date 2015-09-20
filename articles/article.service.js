@@ -21,7 +21,9 @@
         get:     dummyData.article,
         all:     dummyData.articles,
         save:    dummyData.saveArticle,
-        destroy: dummyData.deleteArticle
+        destroy: dummyData.deleteArticle,
+        addLanguage: dummyData.addLanguageToArticle,
+        removeLanguage: dummyData.removeLanguageFromArticle
       }
     }
 
@@ -35,7 +37,7 @@
     
   	return service
 
-  	function get(id) {
+  	function get(id, filter) {
   	
     }
 
@@ -58,6 +60,10 @@
   	function destroy(id, deleted, error) {
 
   	}
+
+    function getContentByLang(lang) {
+
+    }
   }
 
 

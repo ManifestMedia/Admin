@@ -8,7 +8,9 @@
     'ngResource',
     'ui-notification',
     'uiSwitch',
-    'ui.tree'
+    'ui.tree',
+    'ngCookies',
+    'ng-backstretch'
   ]
 
   angular

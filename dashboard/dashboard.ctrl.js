@@ -6,6 +6,8 @@
 	function DashboardController($scope, $log, Notification, dashboard){
 		var vm = this
 
+    $scope.loggedIn = 1
+
     // Methods bindables
     vm.saveQuickPost = saveQuickPost
     vm.deleteArticle = deleteArticle
@@ -20,6 +22,7 @@
     vm.quickPostTitle         
 		vm.quickPostContent
     vm.addToPage
+    vm.defaultLanguage = 'en'
 
     // Froala editor options for dashboard
 		vm.quickPostEditorOptions = {
@@ -31,7 +34,7 @@
 
     function init() {
       $log.debug("-==== DashboardController ====-")       
-      vm.articles      = dashboard.articles()
+      vm.articles      = dashboard.articles() 
       vm.articlesCount = dashboard.countArticles
       vm.pages         = dashboard.pages()
       vm.pagesCount    = dashboard.countPages 

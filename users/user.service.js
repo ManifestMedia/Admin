@@ -21,7 +21,8 @@
         get:     dummyData.user,
         all:     dummyData.users,
         save:    dummyData.saveUser,
-        destroy: dummyData.deleteUser
+        destroy: dummyData.deleteUser,
+        login:   login
       } 
     }
 
@@ -34,6 +35,10 @@
     }
   	
   	return service
+
+    function login(username, password, success, error) {
+      success()
+    }
 
   	function get(id) {
 

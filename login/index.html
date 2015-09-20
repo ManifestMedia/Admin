@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Manifest Admin</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap core CSS -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
-    <!--external css-->
-    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-        
-    <!-- Custom styles for this template -->
-    <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/style-responsive.css" rel="stylesheet">
+	  <!--css libs-->
+	  <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
+	  
+	  <!--external css-->
+	  <link rel="stylesheet" type="text/css" href="../app/assets/font-awesome/css/font-awesome.css" />
+	  <link rel="stylesheet" type="text/css" href="../app/assets/lineicons/style.css">
+	  
+	  <!-- Custom styles for this template -->
+	  <link href="../app/assets/css/style.css" rel="stylesheet">
+	  <link href="../app/assets/css/style-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	  <!--[if lt IE 9]>
+	    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	  <![endif]-->
   </head>
 
-  <body>
-	  <div id="login-page">
+  <body ng-app="adminClient">
+	  <div id="login-page" ng-controller="LoginController as login">
 	  	<div class="container">
-		  	<form class="form-login" action="/">
+		  	<div class="form-login">
 		    	<h2 class="form-login-heading">log in</h2>
 		      <div class="login-wrap">
 			      <input type="text" class="form-control" placeholder="Email" autofocus><br>
@@ -35,7 +35,7 @@
 		                <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
 		            </span>
 
-		            <button class="btn btn-theme pull-right" href="/" type="submit"><i class="fa fa-lock"></i> LOGIN</button>
+		            <button ng-link="#/dashboard" class="btn btn-primary pull-right"><i class="fa fa-lock"></i> LOGIN</button>
 		        </label>
 		        <!-- <hr>
 		        <div class="login-social-link centered">
@@ -59,29 +59,107 @@
 		
 		                      </div>
 		                      <div class="modal-footer">
-		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-		                          <button class="btn btn-theme" type="button">Submit</button>
+		                          <button data-dismiss="modal" class="btn btn-danger" type="button">Cancel</button>
+		                          <button class="btn btn-primary" type="button">Submit</button>
 		                      </div>
 		                  </div>
 		              </div>
 		          </div>
 		          <!-- modal -->
 		
-		      </form>	  	
+		      </div>	  	
 	  	
 	  	</div>
 	  </div>
+<footer>
 
-    <!-- js placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
+		<!-- js libs -->
+		<script src="../app/assets/js/jquery.js"></script>
+    <script src="../app/assets/js/bootstrap.min.js"></script>
+    <script src="../app/assets/js/moment.js"></script>
 
-    <!--BACKSTRETCH-->
-    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
-    <script type="text/javascript" src="../assets/js/jquery.backstretch.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular-resource.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-cookies.min.js"></script>
+       
+    <!-- Froala files -->
+	  <link rel="stylesheet" href="../app/assets/froalaTextEditor/css/font-awesome.min.css" />
+	  <link rel="stylesheet" href="../app/assets/froalaTextEditor/css/froala_content.min.css" />
+	  <link rel="stylesheet" href="../app/assets/froalaTextEditor/css/froala_editor.min.css" />
+	  <link rel="stylesheet" href="../app/assets/froalaTextEditor/css/froala_style.min.css" />
+
+	  <script src="../app/assets/froalaTextEditor/js/froala_editor.min.js"></script>
+
+		<!-- Froala Plugins -->
+	  <script src="../app/assets/froalaTextEditor/js/plugins/tables.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/video.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/block_styles.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/colors.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/media_manager.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/lists.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/font_family.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/font_size.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/file_upload.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/urls.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/fullscreen.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/inline_styles.min.js"></script>
+	  <script src="../app/assets/froalaTextEditor/js/plugins/char_counter.min.js"></script>
+
+    <script src="../app/assets/froalaTextEditor/js/angular-froala.js"></script>
+    <script src="../app/assets/froalaTextEditor/js/froala-sanitize.js"></script>
+
+    <!-- Libs -->
+
+    <script src="../app/assets/js/notifications/angular-ui-notification.min.js"></script>
+    <link rel="stylesheet" href="../app/assets/js/notifications/angular-ui-notification.min.css" />
+
+    <script src="../app/assets/js/uiSwitch/angular-ui-switch.min.js"></script>
+    <link rel="stylesheet" href="../app/assets/js/uiSwitch/angular-ui-switch.css" />
+
+    <script src="../app/assets/lib/ui-tree/angular-ui-tree.js"></script>
+    <link rel="stylesheet" href="../app/assets/lib/ui-tree/angular-ui-tree.css" />
+
+    <script src="../app/assets/js/angular-backstretch.js"></script>
+
+
+    <!--  angular app -->
+    <script src="../app/config.js"></script>
+    <script src="../app/routes.js"></script>
+    <script src="../app/dummy.data.js"></script>
+
+    <!-- angular common -->
+    <script src="../app/common/languages/languages.json"></script>
+		<script src="../app/common/directives/ngLink.js"></script>
+		<script src="../app/common/directives/ngSidebar.js"></script>
+		<script src="../app/common/services/adminConfig.js"></script>
+
+		<!-- angular pages -->
+		<script src="../login/login.ctrl.js"></script>
+
+    <script src="../dashboard/dashboard.ctrl.js"></script>
+    <script src="../dashboard/dashboard.service.js"></script>
+
+    <script src="../pages/pages.ctrl.js"></script>
+    <script src="../pages/page.service.js"></script>
+
+    <script src="../articles/articles.ctrl.js"></script>
+    <script src="../articles/article.service.js"></script>
+    
+    <script src="../profile/profile.ctrl.js"></script>
+    <script src="../profile/profile.service.js"></script>
+
+    <script src="../settings/settings.ctrl.js"></script>
+    <script src="../settings/settings.service.js"></script>
+
+    <script src="../users/users.ctrl.js"></script>
+    <script src="../users/user.service.js"></script>
+
     <script>
-        $.backstretch("../assets/img/login-bg.jpg", {speed: 500});
+        $.backstretch("../app/assets/img/login-bg.jpg", {speed: 250});
     </script>
+	</footer>
+    
 
 
   </body>

@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <!--css libs-->
-    <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    
+<head> 
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--external css-->
-    <link rel="stylesheet" type="text/css" href="app/assets/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" href="app/assets/lineicons/style.css">
-    
-    <!-- Custom styles for this template -->
-    <link href="/app/assets/css/style.css" rel="stylesheet">
-    <link href="/app/assets/css/style-responsive.css" rel="stylesheet">
+  <!--css libs-->
+  <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
+  
+  <!--external css-->
+  <link rel="stylesheet" type="text/css" href="app/assets/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" type="text/css" href="app/assets/lineicons/style.css">
+  
+  <!-- Custom styles for this template -->
+  <link href="/app/assets/css/style.css" rel="stylesheet">
+  <link href="/app/assets/css/style-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
 
 <body ng-app="adminClient">
-	<section id="container">
+	<section backstretch backstretch-images="'/app/assets/img/login-bg.jpg'" id="container" ng-if="!loggedIn">
+		<section>
+	  	<div ng-view class="container-fluid"></div>
+	  </section>
+	</section>
+
+	<section id="container" ng-if="loggedIn">
 		<!-- TOP BAR CONTENT & NOTIFICATIONS -->
 	  <!--header start-->
 	  <header class="header black-bg">
 	    <div class="sidebar-toggle-box">
-	        <div ng-click="dashboard.sidebarOpen = !dashboard.sidebarOpen" id="toggle-sidebar" class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+	        <div id="toggle-sidebar" class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 	    </div>
 	    <!--logo start-->
 	    <a href="index.html" class="logo"><b>MANIFEST ADMIN</b></a>
@@ -35,7 +42,7 @@
 	    <div class="top-menu">
 	    	<ul class="nav pull-right top-menu">
 	        <li><a class="btn btn-default btn-topbar" href="#/profile">My profile</a></li>
-	        <li><a class="btn btn-default btn-topbar" href="/login/">Logout</a></li>
+	        <li><a ng-link="/login" ng-click="$root.loggedIn = 0" class="btn btn-default btn-topbar">Logout</a></li>
 	    	</ul>
 	    </div>
 	  </header>
@@ -89,6 +96,7 @@
 	  <section id="main-content">
 	  	<div ng-view class="container-fluid"></div>
 	  </section>
+
 	</section>
 	<footer>
 
@@ -100,8 +108,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular-resource.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-cookies.min.js"></script>
        
     <!-- Froala files -->
 	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/font-awesome.min.css" />
@@ -140,6 +147,8 @@
     <script src="app/assets/lib/ui-tree/angular-ui-tree.js"></script>
     <link rel="stylesheet" href="app/assets/lib/ui-tree/angular-ui-tree.css" />
 
+    <script src="../app/assets/js/ng-backstretch.min.js"></script>
+
 
     <!--  angular app -->
     <script src="app/config.js"></script>
@@ -151,8 +160,13 @@
 		<script src="app/common/directives/ngLink.js"></script>
 		<script src="app/common/directives/ngSidebar.js"></script>
 		<script src="app/common/services/adminConfig.js"></script>
+		<script src="app/common/services/authentication.service.js"></script>
 
 		<!-- angular pages -->
+		<script src="login/login.ctrl.js"></script>
+
+		<script src="install/install.ctrl.js"></script>
+
     <script src="dashboard/dashboard.ctrl.js"></script>
     <script src="dashboard/dashboard.service.js"></script>
 

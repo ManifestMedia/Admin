@@ -31,7 +31,7 @@
 		          </thead>
 		          <tbody>
 		            <tr ng-repeat="article in articles.articles">
-              <td><a href="">{{article.title}}</a></td>
+              <td><a href="">{{article.content[articles.currentLang].title}}</a></td>
               <td class="hidden-phone">{{article.author}}</td>
               <td>{{article.date}}</td>
               <td><span class="label label-info label-mini">{{article.page}}</span></td>
@@ -39,8 +39,8 @@
                  <switch id="enabled" name="enabled" ng-model="article.published" class="green"></switch>
               </td>
               <td>
-                <button ng-link="edit_article/{{article.id}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                <button ng-click="articles.deleteArticle(article.id)"class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                <button ng-link="article/{{article.id}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                <button ng-click="articles.delete(article.id)"class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
               </td>
             </tr>
 		          </tbody>

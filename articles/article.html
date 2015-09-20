@@ -39,9 +39,15 @@
                   <h5>Main Matter:</h5>
                   <textarea class="form-control article-content" froala="articles.mainMatterEditorOptions" ng-model="articles.mainMatterContent">{{articles.mainMatterContent}}</textarea>
 
-                  <button style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> &nbsp Save article</button>
+                  <button ng-click="articles.save()" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save"></i> &nbsp Save article</button>
 
-                  <button style="margin-top: 25px" class="btn btn-success btn-sm"><i class="fa fa-cloud-upload"></i> &nbsp Publish article</button>
+                  <button 
+                    ng-click="articles.article.published = !articles.article.published" 
+                    ng-class="articles.article.published ? 'btn-danger' : 'btn-success'" 
+                    style="margin-top: 25px" class="btn btn-sm">
+                    <i ng-class="articles.article.published ? 'fa-cloud-download' : 'fa-cloud-upload'"  class="fa"></i> &nbsp 
+                    {{articles.article.published ? "Unpublish article" : "Publish article"}}
+                  </button>
                 </form>
               </div>
 
@@ -63,32 +69,30 @@
             </div>
           </div>
 
-          
+          <!-- OPTIONS SIDEBAR -->
           <div class="col-md-3 options">
             <form class="form-panel quick-post" style="margin-top: 40px;">
               <h3>Show in page</h3>
-              <select class="form-control select-page" style="width: 100%; margin: 25px 0 25px 0;">
-                <option>Home</option>
-                <option>About</option>
-                <option>Contact</option>
-                <option>Impressum</option>
+              <select ng-model="articles.selectPage" class="form-control select-page" style="width: 100%; margin: 25px 0 25px 0;">
+                <option ng-repeat="page in articles.pages" ng-selected="{{page.title == articles.selectPage}}" value="{{page.title}}">{{page.title}}</option>
               </select>
               
               <h3>Languages</h3>
-              <div class="languages-selected">
-
-                <p class="inline-block">English</p>
-                <button class="btn btn-danger btn-xs inline-block pull-right">
+              <div ng-repeat="lang in articles.article.languages" class="languages-selected">
+                <p class="inline-block">{{lang.name}}</p>
+                <button ng-click="articles.removeLanguage(lang)" class="btn btn-danger btn-xs inline-block pull-right">
                   <i class="fa fa-minus-circle" style="margin-top: 4px;"></i>
                 </button>
-
               </div>
-              <select ng-model="articles.language" class="form-control" style="width: 100%; margin: 25px 0 15px 0;">
-                <option ng-repeat="language in articles.languages" value="{{language.id}}">{{language.name}}</option>
+
+              <select ng-model="articles.selectLanguage" class="form-control" style="width: 100%; margin: 25px 0 15px 0;">
+                <option ng-repeat="language in articles.languages" ng-selected="{{language.code == articles.selectLanguage}}" value="{{language.code}}">{{language.name}}</option>
               </select>
-              <button ng-click="articles.addLanguage" style="margin: 5px 0 25px 0" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
+              <button ng-click="articles.addLanguage()" style="margin: 5px 0 25px 0" class="btn btn-block btn-primary btn-sm"><i class="fa fa-plus-circle"></i> &nbsp Add language</button>
             </form>
           </div>
+          <!-- OPTIONS SIDEBAR -->
+
         </div>      
     
 

@@ -10,6 +10,9 @@ Premium: http://www.gridgum.com
 @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
 
 /* BASIC THEME CONFIGURATION */
+html {
+    height: 100%;
+}
 body {
     color: #797979;
 	background: #f2f2f2;
@@ -17,6 +20,7 @@ body {
     padding: 0px !important;
     margin: 0px !important;
     font-size:13px;
+    height: 100%;
 }
 
 ul li {
@@ -44,7 +48,7 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #68dff0;
+	background: #101010;
 }
 
 .modal-title {
@@ -1929,11 +1933,32 @@ label {
 	-webkit-border-radius: 5px;
 }
 
+.form-install {
+    max-width: 450px;
+    margin: 100px auto 0;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;   
+}
+
+.form-install h2.form-install-login {
+    margin: 0;
+    padding: 25px 20px;
+    text-align: center;
+    background: #101010;
+    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
 .form-login h2.form-login-heading {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #68dff0;
+	background: #101010;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;

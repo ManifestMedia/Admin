@@ -11,6 +11,8 @@
       article:        getArticle,
       deleteArticle:  deleteArticle,
       saveArticle:    saveArticle,
+      addLanguageToArticle: addLanguageToArticle,
+      removeLanguageFromArticle: removeLanguageFromArticle, 
       pages:          getPages,
       page:           getPage,
       deletePage:     deletePage,
@@ -20,6 +22,7 @@
       saveUser:       saveUser,
       deleteUser:     deleteUser,
       settings:       settings,
+      setting:        getSetting,
       removeLanguage: removeLanguage,
       addLanguage:    addLanguage
     }
@@ -46,39 +49,83 @@
       articles:  [
         {
           id:        12,
-          title:     "Wellcome",
-          content:   "Some test Content 1", 
           author:    "Simun Strukan",
           date:      "21.09.2015, 18:35",
           page:      "Home",
-          published: true
+          published: true,
+          languages: [
+            {
+              code: "en",
+              name: "English"
+            }
+          ],
+          content: {
+            en: {
+              title: "Wellcome",
+              frontMatter: "Some test Content 1",
+              mainMatter:  "Article content",
+            }
+          }
         },
         {
           id:        23,
-          title:     "Who we are?",
-          content:   "Some test Content 1", 
           author:    "Simun Strukan",
           date:      "21.10.2015, 09:00",
           page:      "About",
-          published: false
+          published: false,
+          languages: [
+            {
+              code: "en",
+              name: "English"
+            }
+          ],
+          content: {
+            en: {
+              title: "Who we are?",
+              frontMatter: "Some test Content 1",
+              mainMatter:  "Article content",
+            }
+          }
         },
         {
           id:        10,
-          title:     "Where we are?",
-          content:   "Some test Content 1",
           author:    "Simun Strukan",
           date:      "21.10.2015, 12:00",
           page:      "Contact",
-          published: false
+          published: false,
+          languages: [
+            {
+              code: "en",
+              name: "English"
+            }
+          ],
+          content: {
+            en: {
+              title: "Where we are?",
+              frontMatter: "Some test Content 1",
+              mainMatter:  "Article content",
+            }
+          }
         },
         {
           id:        11,
-          title:     "About our company",
-          content:   "Some test Content 1",
           author:    "Simun Strukan",
           date:      "21.13.2015, 12:45",
           page:      "Impressum",
-          published: false
+          published: false,
+          languages: [
+            {
+              code: "en",
+              name: "English"
+            }
+          ],
+          content: {
+            en: {
+              title: "What we do?",
+              frontMatter: "Some test Content 1",
+              mainMatter:  "Article content",
+            }
+          }
         }
       ],
       pages: [
@@ -146,11 +193,31 @@
     // ARTICLES
 
     function getArticles() {
-      return staticData.articles
+
+      var currentArticles = staticData.articles
+      $log.debug(currentArticles)
+
+      // if (lang != null) {
+      //   for (var i = 0; i < currentArticles.length; i++) {
+      //     var title = $filter('filter')(currentArticles[i].content, {lang: lang})[0].title
+      //     currentArticles[i].title = title
+      //   };
+      // };
+      return currentArticles
     }
 
-    function getArticle(id) {
-      return $filter('filter')(staticData.articles, {id: id})[0];
+    function getArticle(id, lang){
+      var currentArticle = $filter('filter')(staticData.articles, {id: id})[0];
+      var articleLanguages = []
+      if (lang != null) {
+        var currentContent = $filter('filter')(currentArticle.content, {lang: lang})[0];  
+        for (var i = 0; i < currentArticle.content.length; i++) {
+          articleLanguages.push(currentArticle.content[i].lang)
+        };
+        angular.extend(currentArticle, currentContent)
+        currentArticle.lang = articleLanguages
+      };
+      return currentArticle
     }
 
     function deleteArticle(id, deleted) { 
@@ -160,7 +227,7 @@
       deleted(staticData.articles) 
     }
 
-    function saveArticle(data, id, saved, error) {
+    function saveArticle(data, id, lang, saved, error) {
       if(data.title == null){
         error({msg: "Please enter post title, before saving!"})
         return 
@@ -173,11 +240,18 @@
 
       var articleData = {  
         title:     data.title,
-        content:   data.content,
         page:      data.page,
         author:    "Simun Strukan",
-        date:      moment().format('MMMM Do YYYY, h:mm:ss'),
-        published: false
+        date:      moment().format('DD.MM.YYYY, HH:mm'),
+        published: false,
+        languages: [$filter('filter')(staticData.settings.languages, {code: lang})[0]],
+        content:    {}
+      }
+
+      articleData.content[lang] = {
+        title:       data.title,
+        frontMatter: data.frontMatter,
+        mainMatter:  data.mainMatter,
       }
       
       if (id == null) {
@@ -187,14 +261,40 @@
         staticData.articles.push(articleData)
       }
       else {
-        var article     = getArticle(id)
-        var index       = staticData.articles.indexOf(article)
-        article.title   = data.title
-        article.content = data.content
-        article.page    = data.page
+        var article = getArticle(id)
+        var index   = staticData.articles.indexOf(article)
+        article.content[lang].title       = data.title
+        article.content[lang].frontMatter =  data.frontMatter
+        article.content[lang].mainMatter  =  data.mainMatter
+        article.page                      = data.page        
+        
         staticData.articles[index] = article
       }
       saved(staticData.articles)
+    }
+
+    function addLanguageToArticle(id, code, success, error){
+      var article = getArticle(id)
+      var index = staticData.articles.indexOf(article)
+
+      var lang = $filter('filter')(staticData.settings.languages, {code: code})[0]
+
+      article.languages.push(lang)
+      article.content[lang.code] = {}
+      staticData.articles[index] = article
+
+      success(article)
+
+    }
+
+    function removeLanguageFromArticle(id, lang, success, error){
+      var article = getArticle(id)
+      var index = staticData.articles.indexOf(article)
+      var langIndex = article.languages.indexOf(lang) 
+      
+      delete article.content[lang.code]
+      article.languages.splice(langIndex, 1)
+      success(article)
     }
 
     // PAGES
@@ -332,6 +432,10 @@
       return staticData.settings
     }
 
+    function getSetting(key) {
+      return staticData.settings[key] 
+    }
+
     function addLanguage(code, added, error) {
       $http
         .get('app/common/languages/languages.json')
@@ -348,7 +452,6 @@
       var index = staticData.settings.languages.indexOf(lang)
       staticData.settings.languages.splice(index, 1)
       deleted(staticData.settings.languages)
-
     }
 
   }
