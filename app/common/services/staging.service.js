@@ -3,9 +3,10 @@
 
   angular
     .module("adminClient")
-    .factory('dummyData', dummyData)
+    .factory('staging', staging)
 
-  function dummyData($http, $filter, $log) {    
+  function staging($http, $filter, $log) {    
+    var staticData
     var services = {  
       articles:       getArticles,
       article:        getArticle,
@@ -26,183 +27,14 @@
       removeLanguage: removeLanguage,
       addLanguage:    addLanguage
     }
-
-    var staticData = {
-      settings: {
-        title: "Homepage.com",
-        header: "/path/to/header.img.png",
-        languages: [
-          {
-            code: 'en',
-            name: 'English'
-          },
-          {
-            code: 'ger',
-            name: 'German'
-          },
-          {
-            code: 'cro',
-            name: 'Croatian'
-          }
-        ]
-      },
-      articles:  [
-        {
-          id:        12,
-          author:    "Simun Strukan",
-          date:      "21.09.2015, 18:35",
-          page:      "Home",
-          published: true,
-          languages: [
-            {
-              code: "en",
-              name: "English"
-            }
-          ],
-          content: {
-            en: {
-              title: "Wellcome",
-              frontMatter: "Some test Content 1",
-              mainMatter:  "Article content",
-            }
-          }
-        },
-        {
-          id:        23,
-          author:    "Simun Strukan",
-          date:      "21.10.2015, 09:00",
-          page:      "About",
-          published: false,
-          languages: [
-            {
-              code: "en",
-              name: "English"
-            }
-          ],
-          content: {
-            en: {
-              title: "Who we are?",
-              frontMatter: "Some test Content 1",
-              mainMatter:  "Article content",
-            }
-          }
-        },
-        {
-          id:        10,
-          author:    "Simun Strukan",
-          date:      "21.10.2015, 12:00",
-          page:      "Contact",
-          published: false,
-          languages: [
-            {
-              code: "en",
-              name: "English"
-            }
-          ],
-          content: {
-            en: {
-              title: "Where we are?",
-              frontMatter: "Some test Content 1",
-              mainMatter:  "Article content",
-            }
-          }
-        },
-        {
-          id:        11,
-          author:    "Simun Strukan",
-          date:      "21.13.2015, 12:45",
-          page:      "Impressum",
-          published: false,
-          languages: [
-            {
-              code: "en",
-              name: "English"
-            }
-          ],
-          content: {
-            en: {
-              title: "What we do?",
-              frontMatter: "Some test Content 1",
-              mainMatter:  "Article content",
-            }
-          }
-        }
-      ],
-      pages: [
-        { 
-          id:     1,
-          title:  "Home",
-          author: "Simun Strukan",
-          date:   "21.09.2015, 12:45",
-          articlesCount: 1,
-          published: true,
-          subPages: []
-        },
-        {
-          id:     2,
-          title:  "About",
-          author: "Simun Strukan",
-          date:   "21.09.2015, 13:00",
-          articlesCount: 1,
-          published: true,
-          subPages: []
-        },
-        {
-          id:     3,
-          title:  "Contact",
-          author: "Simun Strukan",
-          date:   "21.09.2015, 13:15",
-          articlesCount: 1,
-          published: false,
-          subPages: []
-        },
-        {
-          id:     4,
-          title:  "Impressum",
-          author: "Simun Strukan",
-          date:   "21.09.2015, 13:45",
-          articlesCount: 1,
-          published: false,
-          subPages: []
-        },
-      ],
-      users:     [
-        { 
-          id: 1,
-          firstName: "Simun",
-          lastName: "Strukan",
-          email: "simun.strukan@gmail.com",
-          secondaryEmail: "simun@manifestmedia.uk",
-          role: "Admin",
-          status: 1
-        },
-        { 
-          id: 12,
-          firstName: "Dario",
-          lastName: "Molinari",
-          email: "dario@manifestmedia.uk",
-          secondaryEmail: "dario.molinari@gmail.com",
-          role: "Admin",
-          status: 1
-        }
-      ],
-    }
-
+    
+    $http.get('app/staging.data.json').success(function(response){staticData = response})
     return services
 
     // ARTICLES
 
     function getArticles() {
-
       var currentArticles = staticData.articles
-      $log.debug(currentArticles)
-
-      // if (lang != null) {
-      //   for (var i = 0; i < currentArticles.length; i++) {
-      //     var title = $filter('filter')(currentArticles[i].content, {lang: lang})[0].title
-      //     currentArticles[i].title = title
-      //   };
-      // };
       return currentArticles
     }
 
@@ -427,6 +259,8 @@
       staticData.users.splice(index, 1)
       deleted(staticData.users) 
     }
+
+    // SETTINGS
 
     function settings() { 
       return staticData.settings

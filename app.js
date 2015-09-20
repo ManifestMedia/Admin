@@ -1,10 +1,22 @@
 (function () {
-    'use strict';
+  'use strict';
+
+  var loadAngularModules = [
+    "ngRoute",
+    'ngSanitize', 
+    'froala',
+    'ngResource',
+    'ui-notification',
+    'uiSwitch',
+    'ui.tree',
+    'ngCookies',
+    'ng-backstretch'
+  ]
  
   angular
-    .module("adminClient")
+    .module('adminClient', loadAngularModules)
     .run(authenticate)
-    .config(['$routeProvider', function($routeProvider) {   
+    .config(['$routeProvider', '$logProvider', 'NotificationProvider', function($routeProvider, $logProvider, NotificationProvider, config){   
       // Configure url routes
       $routeProvider.
       when('/login', {
@@ -70,6 +82,19 @@
       otherwise({
         redirectTo: '/dashboard'
       });
+
+      $logProvider.debugEnabled(true);
+
+      NotificationProvider.setOptions({
+          delay: 5000,
+          startTop: 65,
+          startRight: 30,
+          verticalSpacing: 15,
+          horizontalSpacing: 20,
+          positionX: 'right',
+          positionY: 'top'
+      });
+
     }])
   
   authenticate.$inject = ['$rootScope', '$location', '$log'];
@@ -79,7 +104,6 @@
       var restrictedPage = $.inArray($location.path(), ['/login', '/install']) === -1;
 
       if (!restrictedPage) {
-        $rootScope.loggedIn = false
       };
 
 

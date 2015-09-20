@@ -5,7 +5,7 @@
   	.module("adminClient")
   	.factory("settings", settings)
 
-  function settings($resource, dummyData, config) {
+  function settings($resource, staging, config) {
   	if (config.adminInstalled) {
       var service = {
         get:    get,
@@ -18,12 +18,12 @@
     }
     else {
       var service = {
-        get:            dummyData.setting,
-        all:            dummyData.settings,
-        save:           dummyData.saveSettings,
+        get:            staging.setting,
+        all:            staging.settings,
+        save:           staging.saveSettings,
         remove:         remove,
-        removeLanguage: dummyData.removeLanguage,
-        addLanguage:    dummyData.addLanguage
+        removeLanguage: staging.removeLanguage,
+        addLanguage:    staging.addLanguage
       } 
     }
   	

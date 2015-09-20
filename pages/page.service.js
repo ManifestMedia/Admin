@@ -5,7 +5,7 @@
   	.module("adminClient")
   	.factory("page", page)
 
-  function page($resource, $filter, dummyData, config) {
+  function page($resource, $filter, staging, config) {
   	if (config.adminInstalled) {
       var service = {
         get:     get,
@@ -18,10 +18,10 @@
     }
     else {
       var service = {
-        get:     dummyData.page,
-        all:     dummyData.pages,
-        save:    dummyData.savePage,
-        destroy: dummyData.deletePage
+        get:     staging.page,
+        all:     staging.pages,
+        save:    staging.savePage,
+        destroy: staging.deletePage
       }
     }
 

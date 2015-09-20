@@ -18,9 +18,7 @@
     function login(credentials, success, error) {
       islogged = true
       $rootScope.loggedIn = true
-
     }
 
-  	
   }
 })()

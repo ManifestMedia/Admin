@@ -4,16 +4,22 @@
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!--css libs-->
+  <!-- CSS libs-->
   <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
   
-  <!--external css-->
+  <!-- Graphics css -->
   <link rel="stylesheet" type="text/css" href="app/assets/font-awesome/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="app/assets/lineicons/style.css">
   
   <!-- Custom styles for this template -->
   <link href="/app/assets/css/style.css" rel="stylesheet">
   <link href="/app/assets/css/style-responsive.css" rel="stylesheet">
+
+  <!-- Froala style files -->
+  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_content.min.css" />
+  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_editor.min.css" />
+  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_style.min.css" />
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -23,6 +29,8 @@
 </head>
 
 <body ng-app="adminClient">
+	
+	<!-- UPROTECED VIEWS, LOGIN & INSTALL -->
 	<section backstretch backstretch-images="'/app/assets/img/login-bg.jpg'" id="container" ng-if="!loggedIn">
 		<section>
 	  	<div ng-view class="container-fluid"></div>
@@ -31,6 +39,7 @@
 
 	<section id="container" ng-if="loggedIn">
 		<!-- TOP BAR CONTENT & NOTIFICATIONS -->
+	  
 	  <!--header start-->
 	  <header class="header black-bg">
 	    <div class="sidebar-toggle-box">
@@ -49,6 +58,7 @@
 	  <!--header end-->
 
 	  <!-- MAIN SIDEBAR MENU -->
+	  
 	  <!--sidebar start-->
 	  <aside>
 	    <div ng-sidebar id="sidebar" class="nav-collapse ">
@@ -88,6 +98,7 @@
 	        </li>
 	      </ul>
 	      <!-- sidebar menu end-->
+	    
 	    </div>
 	  </aside>
 	  <!--sidebar end-->
@@ -110,31 +121,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular-resource.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-cookies.min.js"></script>
        
-    <!-- Froala files -->
-	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/font-awesome.min.css" />
-	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_content.min.css" />
-	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_editor.min.css" />
-	  <link rel="stylesheet" href="app/assets/froalaTextEditor/css/froala_style.min.css" />
-
-	  <script src="app/assets/froalaTextEditor/js/froala_editor.min.js"></script>
-
-		<!-- Froala Plugins -->
-	  <script src="app/assets/froalaTextEditor/js/plugins/tables.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/video.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/block_styles.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/colors.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/media_manager.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/lists.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/font_family.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/font_size.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/file_upload.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/urls.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/fullscreen.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/inline_styles.min.js"></script>
-	  <script src="app/assets/froalaTextEditor/js/plugins/char_counter.min.js"></script>
-
-    <script src="app/assets/froalaTextEditor/js/angular-froala.js"></script>
-    <script src="app/assets/froalaTextEditor/js/froala-sanitize.js"></script>
 
     <!-- Libs -->
 
@@ -149,18 +135,36 @@
 
     <script src="../app/assets/js/ng-backstretch.min.js"></script>
 
+    <script src="app/assets/froalaTextEditor/js/angular-froala.js"></script>
+    <script src="app/assets/froalaTextEditor/js/froala_editor.min.js"></script>
+	    <!-- Froala Plugins -->
+		  <script src="app/assets/froalaTextEditor/js/plugins/tables.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/video.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/block_styles.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/colors.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/media_manager.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/lists.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/font_family.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/font_size.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/file_upload.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/urls.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/fullscreen.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/inline_styles.min.js"></script>
+		  <script src="app/assets/froalaTextEditor/js/plugins/char_counter.min.js"></script>
+	    <script src="app/assets/froalaTextEditor/js/froala-sanitize.js"></script>
+	  	<!-- Froala Plugins -->
+
 
     <!--  angular app -->
-    <script src="app/config.js"></script>
-    <script src="app/routes.js"></script>
-    <script src="app/dummy.data.js"></script>
-
+    <script src="app.js"></script>
+    
     <!-- angular common -->
     <script src="app/common/languages/languages.json"></script>
 		<script src="app/common/directives/ngLink.js"></script>
 		<script src="app/common/directives/ngSidebar.js"></script>
-		<script src="app/common/services/adminConfig.js"></script>
+		<script src="app/common/services/config.service.js"></script>
 		<script src="app/common/services/authentication.service.js"></script>
+		<script src="app/common/services/staging.service.js"></script>
 
 		<!-- angular pages -->
 		<script src="login/login.ctrl.js"></script>

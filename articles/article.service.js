@@ -5,7 +5,7 @@
   	.module("adminClient")
   	.factory("article", article)
 
-  function article($resource, dummyData, config) {
+  function article($resource, staging, config) {
   	if (config.adminInstalled) {
       var service = {
         get:     get,
@@ -18,12 +18,12 @@
     } 
     else {
       var service = {
-        get:     dummyData.article,
-        all:     dummyData.articles,
-        save:    dummyData.saveArticle,
-        destroy: dummyData.deleteArticle,
-        addLanguage: dummyData.addLanguageToArticle,
-        removeLanguage: dummyData.removeLanguageFromArticle
+        get:     staging.article,
+        all:     staging.articles,
+        save:    staging.saveArticle,
+        destroy: staging.deleteArticle,
+        addLanguage: staging.addLanguageToArticle,
+        removeLanguage: staging.removeLanguageFromArticle
       }
     }
 

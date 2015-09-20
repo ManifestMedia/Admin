@@ -3,7 +3,7 @@
     .module('adminClient')
     .controller("LoginController", LoginController)
 
-	function LoginController($scope, $rootScope, $log, config, $location, user){
+	function LoginController($scope, $rootScope, $log, $location, config, user){
 		var vm = this
 
 		vm.go = go
@@ -16,6 +16,7 @@
 
 		function init() {
 			vm.adminInstalled = config.adminInstalled
+			$log.debug(vm.adminInstalled)
 		}
 
 		function go() {

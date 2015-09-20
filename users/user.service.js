@@ -5,7 +5,7 @@
   	.module("adminClient")
   	.factory("user", user)
 
-  function user($resource, config, dummyData) {
+  function user($resource, config, staging) {
   	if (config.adminInstalled) {
       var service = {
         get:     get,
@@ -18,10 +18,10 @@
     }
     else {
       var service = {
-        get:     dummyData.user,
-        all:     dummyData.users,
-        save:    dummyData.saveUser,
-        destroy: dummyData.deleteUser,
+        get:     staging.user,
+        all:     staging.users,
+        save:    staging.saveUser,
+        destroy: staging.deleteUser,
         login:   login
       } 
     }

@@ -5,7 +5,7 @@
   	.module("adminClient")
   	.factory("profile", profile)
 
-  function profile($resource, dummyData, config) {
+  function profile($resource, staging, config) {
   	if (config.adminInstalled) {
       var service = {
         get:            get,
@@ -15,9 +15,9 @@
     }
     else {
       var service = {
-        get:            dummyData.user,
-        save:           dummyData.saveUser,
-        changePassword: dummyData.changePassword
+        get:            staging.user,
+        save:           staging.saveUser,
+        changePassword: staging.changePassword
       }
     }
 

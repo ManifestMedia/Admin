@@ -5,8 +5,10 @@
   	.module("adminClient")
   	.factory("dashboard", dashboard)
 
-  function dashboard($resource, $log, config, dummyData, article, page, user) {
-  	if (config.adminInstalled) {
+  function dashboard($resource, $log, config, staging, article, page, user) {
+  	$log.debug(config)
+
+    if (config.adminInstalled) {
       var service = {
         pages:         page.all,
         page:          page.get,
@@ -22,21 +24,21 @@
     }
     else {
       var service = {
-        pages:         dummyData.pages,
-        deletePage:    dummyData.deletePage,
-        articles:      dummyData.articles,
+        pages:         staging.pages,
+        deletePage:    staging.deletePage,
+        articles:      staging.articles,
         saveQuickPost: saveQuickPost,
-        deleteArticle: dummyData.deleteArticle,
-        countArticles: dummyData.articles().length,
-        countPages:    dummyData.pages().length,
-        countUsers:    dummyData.users().length,
+        deleteArticle: staging.deleteArticle,
+        countArticles: staging.articles().length,
+        countPages:    staging.pages().length,
+        countUsers:    staging.users().length,
       }
     }
 
   	return service 
 
     function saveQuickPost(data, saved, error) {
-      dummyData.saveArticle(data, null, function(response){
+      staging.saveArticle(data, null, function(response){
         saved(response)
       }, function(errRsponse){
         error(errRsponse)
