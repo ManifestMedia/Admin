@@ -1,4 +1,4 @@
-#Manifest Admin Pannel
+#Admin Pannel
 
 Manifest admin is a cms without a frotend, in short. The idea behind it is that the db layer is handled and accessed via backend ui. That way it is possible to build fronted without most restrictions of a standard cms, by using the data and database handled by Admin panel. To be clear this is not end user oriented product, in terms that it is built for web developers who are tired of re writing the same functionalities and designing the same ui. This admin ui is built around some general requirements for an average website, like the need for pages, menu, articles or article gallery, file upload etc.
 All the specific requirements can be easily added using the codeigniter framework on which the admin is based on. This way the end user can have full custom fronted, powered by a backend admin ui that doesn't have to be heavily moded in order to provide specifics that the end user is requesting.
