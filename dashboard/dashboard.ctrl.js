@@ -3,10 +3,10 @@
     .module('adminClient')
     .controller("DashboardController", DashboardController)
 
-	function DashboardController($scope, $log, Notification, dashboard){
+	function DashboardController($scope, $log, Notification, config, dashboard){
 		var vm = this
 
-    $scope.loggedIn = 1
+    $scope.loggedIn = 0
 
     // Methods bindables
     vm.saveQuickPost = saveQuickPost

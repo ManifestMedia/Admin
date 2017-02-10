@@ -19,7 +19,19 @@
 	          <form class="form-panel quick-post">
 	            <h4 ng-show="pages.pageId == null">Add page</h4>
 	            <h4 ng-show="pages.pageId != null">Edit page</h4>
-	            <input ng-model="pages.title" type="text" placeholder="Page title ..." class="form-control" style="width: 70%; margin-top: 10px; " />
+
+	            <div class="row">
+	            	<div class="col-md-9">
+	            		<input ng-model="pages.title" type="text" placeholder="Page title ..." class="form-control"/>
+	            	</div>
+	            	<div class="col-md-3">
+	            		<select ng-model="pages.currentLanguage" class="form-control select-page">
+		                <option ng-repeat="language in pages.languages" value="{{language.code}}">{{language.name}}</option>
+		              </select>
+	            	</div>
+	            </div>
+
+	            
 	            <button ng-click="pages.submitPageData(pages.pageId)" style="margin-top: 25px" class="btn btn-primary btn-sm"><i class="fa fa-save" style="margin-right: 5px;"></i> &nbsp {{pages.saveButtonTitle}}</button>
 	          </form>
 	        </div>
@@ -30,7 +42,7 @@
 				  	<div class="task-title angular-ui-tree-handle-page">
 					  	<div class="row">
 					  		<div ui-tree-handle class="col-md-2">
-	        					<i class="fa fa-hand-o-up" style="margin-right: 5px"></i>&nbsp {{page.title}}
+	        					<i class="fa fa-hand-o-up" style="margin-right: 5px"></i>&nbsp {{page.title[pages.currentLanguage]}}
 	        			</div>
 	        			<div class="col-md-2">
 									{{page.author}}

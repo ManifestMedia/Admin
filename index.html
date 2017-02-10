@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- CSS libs-->
-  <link href="/app/assets/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="app/assets/css/bootstrap.css" >
   
   <!-- Graphics css -->
-  <link rel="stylesheet" type="text/css" href="app/assets/font-awesome/css/font-awesome.css" />
-  <link rel="stylesheet" type="text/css" href="app/assets/lineicons/style.css">
+  <link rel="stylesheet"  href="app/assets/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet"  href="app/assets/lineicons/style.css">
   
   <!-- Custom styles for this template -->
-  <link href="/app/assets/css/style.css" rel="stylesheet">
-  <link href="/app/assets/css/style-responsive.css" rel="stylesheet">
+  <link href="app/assets/css/style.css" type="text/css" rel="stylesheet">
+  <link href="app/assets/css/style-responsive.css" rel="stylesheet">
 
   <!-- Froala style files -->
   <link rel="stylesheet" href="app/assets/froalaTextEditor/css/font-awesome.min.css" />
@@ -31,13 +31,14 @@
 <body ng-app="adminClient">
 	
 	<!-- UPROTECED VIEWS, LOGIN & INSTALL -->
-	<section backstretch backstretch-images="'/app/assets/img/login-bg.jpg'" id="container" ng-if="!loggedIn">
+<!-- 	<section backstretch backstretch-images="'/app/assets/img/login-bg.jpg'" id="container" ng-if="!loggedIn">
 		<section>
 	  	<div ng-view class="container-fluid"></div>
 	  </section>
-	</section>
+	</section> -->
 
-	<section id="container" ng-if="loggedIn">
+	<section id="container">
+	<!-- <section id="container" ng-if="loggedIn"> -->
 		<!-- TOP BAR CONTENT & NOTIFICATIONS -->
 	  
 	  <!--header start-->
@@ -51,7 +52,7 @@
 	    <div class="top-menu">
 	    	<ul class="nav pull-right top-menu">
 	        <li><a class="btn btn-default btn-topbar" href="#/profile">My profile</a></li>
-	        <li><a ng-link="/login" ng-click="$root.loggedIn = 0" class="btn btn-default btn-topbar">Logout</a></li>
+	        <li><a href="#/logout" class="btn btn-default btn-topbar">Logout</a></li>
 	    	</ul>
 	    </div>
 	  </header>
@@ -64,7 +65,7 @@
 	    <div ng-sidebar id="sidebar" class="nav-collapse ">
 	      <!-- sidebar menu start-->
 	      <ul class="sidebar-menu" id="nav-accordion">
-	    	  <p class="centered"><a href="#/profile"><img src="/app/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+	    	  <p class="centered"><a href="#/profile"><img src="app/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
 	    	  <h5 class="centered">Simun Strukan</h5>
 	        <li class="mt">
 	          <a href="#/dashboard">
@@ -116,11 +117,11 @@
     <script src="app/assets/js/bootstrap.min.js"></script>
     <script src="app/assets/js/moment.js"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.5/angular-resource.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-resource.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-cookies.min.js"></script>
-       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.9/ngStorage.min.js"></script>
 
     <!-- Libs -->
 
@@ -133,7 +134,7 @@
     <script src="app/assets/lib/ui-tree/angular-ui-tree.js"></script>
     <link rel="stylesheet" href="app/assets/lib/ui-tree/angular-ui-tree.css" />
 
-    <script src="../app/assets/js/ng-backstretch.min.js"></script>
+    <script src="app/assets/js/ng-backstretch.min.js"></script>
 
     <script src="app/assets/froalaTextEditor/js/angular-froala.js"></script>
     <script src="app/assets/froalaTextEditor/js/froala_editor.min.js"></script>
@@ -163,11 +164,12 @@
 		<script src="app/common/directives/ngLink.js"></script>
 		<script src="app/common/directives/ngSidebar.js"></script>
 		<script src="app/common/services/config.service.js"></script>
-		<script src="app/common/services/authentication.service.js"></script>
+		<script src="app/common/services/auth.interceptor.service.js"></script>
 		<script src="app/common/services/staging.service.js"></script>
 
 		<!-- angular pages -->
 		<script src="login/login.ctrl.js"></script>
+		<script src="login/logout.ctrl.js"></script>
 
 		<script src="install/install.ctrl.js"></script>
 

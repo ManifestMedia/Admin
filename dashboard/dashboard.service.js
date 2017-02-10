@@ -5,24 +5,23 @@
   	.module("adminClient")
   	.factory("dashboard", dashboard)
 
-  function dashboard($resource, $log, config, staging, article, page, user) {
-  	$log.debug(config)
-
-    if (config.adminInstalled) {
-      var service = {
-        pages:         page.all,
-        page:          page.get,
-        deletePage:    page.destroy, 
-        articles:      article.all,
-        article:       article.get,
-        saveQuickPost: article.save,
-        deleteArticle: article.destroy, 
-        countArticles: article.all().length,
-        countPages:    page.all().length,
-        countUsers:    user.all().length
-      }
-    }
-    else {
+  function dashboard($resource, $log, staging, article, page, user) {
+    $log.debug("-=== Dashboard Service ===-")
+    // if (config.adminInstalled) {
+    //   var service = {
+    //     pages:         page.all,
+    //     page:          page.get,
+    //     deletePage:    page.destroy, 
+    //     articles:      article.all,
+    //     article:       article.get,
+    //     saveQuickPost: article.save,
+    //     deleteArticle: article.destroy, 
+    //     countArticles: article.all().length,
+    //     countPages:    page.all().length,
+    //     countUsers:    user.all().length
+    //   }
+    // }
+    // else {
       var service = {
         pages:         staging.pages,
         deletePage:    staging.deletePage,
@@ -33,7 +32,7 @@
         countPages:    staging.pages().length,
         countUsers:    staging.users().length,
       }
-    }
+    //}
 
   	return service 
 

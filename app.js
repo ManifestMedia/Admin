@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-
+  
   var loadAngularModules = [
     "ngRoute",
     'ngSanitize', 
@@ -9,33 +9,104 @@
     'ui-notification',
     'uiSwitch',
     'ui.tree',
+    'ngStorage',
     'ngCookies',
     'ng-backstretch'
   ]
- 
+
   angular
     .module('adminClient', loadAngularModules)
     .run(authenticate)
-    .config(['$routeProvider', '$logProvider', 'NotificationProvider', function($routeProvider, $logProvider, NotificationProvider, config){   
-      // Configure url routes
-      $routeProvider.
+    .config(setDebug)
+    .config(injectInterceptor)
+    .config(setNotifications)
+    .config(setRoutes)
+
+  authenticate.$inject = [
+    '$rootScope', 
+    '$location', 
+    '$log',
+    '$cookies'
+  ];
+
+  function authenticate($rootScope, $location, $log, $cookies) {
+    $log.debug("-== Authenticate Path ==-")
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+      
+      // redirect to login page if not logged in and trying to access a restricted page
+      var restrictedPage = $.inArray($location.path(), ['/login', '/install']) === -1;
+      
+      if ($location.path() == '/login') {
+        $rootScope.loggedIn = false
+      };
+      
+      if ($cookies.get('user')) {
+        $rootScope.loggedIn = true
+      };
+        
+      if (restrictedPage && !$cookies.get('user')) {
+       $location.path('/login')
+      }
+    });
+  } 
+
+  function setNotifications(NotificationProvider){
+    NotificationProvider.setOptions({
+      delay: 5000,
+      startTop: 65,
+      startRight: 30,
+      verticalSpacing: 15,
+      horizontalSpacing: 20,
+      positionX: 'right',
+      positionY: 'top'
+    });
+  }
+
+  function setDebug($logProvider) {
+    $logProvider.debugEnabled(true);
+  }
+
+  function injectInterceptor($httpProvider){
+    $httpProvider.interceptors.push('authInterceptor')
+  }
+  
+  setRoutes.$inject = ['$routeProvider'] 
+  function setRoutes($routeProvider, $logProvider, $httpProvider){   
+    // Configure url routes
+    $routeProvider.
       when('/login', {
-      	//Admin dashboard
+      	//Login user
         templateUrl:  'login/login.html',
         controller:   'LoginController',
         controllerAs: 'login',
+        // resolve: {
+        //   config: function(config){
+        //     return config
+        //   }
+        // }
+      }).
+      when('/logout', {
+        //Logout user
+        controller:   'LogoutController',
+        controllerAs: 'logout',
+        template: ''
       }).
       when('/install', {
         //Admin dashboard
         templateUrl:  'install/install.html',
         controller:   'InstallController',
-        controllerAs: 'login',
+        controllerAs: 'install',
       }).
       when('/dashboard', {
         //Admin dashboard
         templateUrl: 'dashboard/dashboard.html',
         controller: 'DashboardController',
-        controllerAs: "dashboard"
+        controllerAs: "dashboard",
+        // resove: {
+        //   dashboard: function(dashboard){
+        //     return dashboard
+        //   }
+        // }
       }).
       when('/profile', {
         //Profile page
@@ -82,54 +153,5 @@
       otherwise({
         redirectTo: '/dashboard'
       });
-
-      $logProvider.debugEnabled(true);
-
-      NotificationProvider.setOptions({
-          delay: 5000,
-          startTop: 65,
-          startRight: 30,
-          verticalSpacing: 15,
-          horizontalSpacing: 20,
-          positionX: 'right',
-          positionY: 'top'
-      });
-
-    }])
-  
-  authenticate.$inject = ['$rootScope', '$location', '$log'];
-  function authenticate($rootScope, $location, $log) {
-    $rootScope.$on('$routeChangeStart', function (event, next, current) {
-      // redirect to login page if not logged in and trying to access a restricted page
-      var restrictedPage = $.inArray($location.path(), ['/login', '/install']) === -1;
-
-      if (!restrictedPage) {
-      };
-
-
-      if (restrictedPage && !$rootScope.loggedIn) {
-        $location.path('/login')
-      }
-    });
   }
-  //   //run.$inject = ['$rootScope', '$location', '$http'];
-  // function run($rootScope, $location, $cookies, $http) {
-  //     // keep user logged in after page refresh
-  //     $rootScope.globals = $cookies.get('globals') || {};
-  //     if ($rootScope.globals.currentUser) {
-  //         $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
-  //     }
-
-  //     $rootScope.$on('$routeChangeStart', function (event, next, current) {
-  //         // redirect to login page if not logged in and trying to access a restricted page
-  //         var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-  //         var loggedIn = $rootScope.globals.currentUser;
-
-  //         //loggedIn = 1
-
-  //         if (restrictedPage && !loggedIn) {
-  //              window.location.href = '/login'
-  //         }
-  //     });
-  //   }    
 })()

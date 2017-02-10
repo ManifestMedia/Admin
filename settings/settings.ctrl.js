@@ -24,7 +24,7 @@
 				vm.availableLanguages = response
 				vm.language = vm.availableLanguages[0].code
 			})
-			vm.settings = settings.all()
+			vm.settings = settings.get()
 			vm.languages = vm.settings.languages
 			vm.websiteTitle = vm.settings.title
 		}

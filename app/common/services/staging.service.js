@@ -6,8 +6,12 @@
     .factory('staging', staging)
 
   function staging($http, $filter, $log) {    
+    $log.debug("-=== Staging Service ===-")
+
     var staticData
+
     var services = {  
+      promise:        promise,
       articles:       getArticles,
       article:        getArticle,
       deleteArticle:  deleteArticle,
@@ -25,10 +29,19 @@
       settings:       settings,
       setting:        getSetting,
       removeLanguage: removeLanguage,
-      addLanguage:    addLanguage
+      addLanguage:    addLanguage,
+      login:          login
     }
     
-    $http.get('app/staging.data.json').success(function(response){staticData = response})
+    var promise = $http
+      .get('app/staging.data.json')
+      .success(function(response){
+        staticData = response; 
+        $log.debug("-== Staging File Loaded ==-")
+        $log.debug(staticData)
+      })
+
+    //$log.debug(staticData)
     return services
 
     // ARTICLES
@@ -207,6 +220,10 @@
 
     // USERS
 
+    function login(username, password, success, error) {
+      success({})
+    }
+
     function getUsers() {
       return staticData.users
     }
@@ -267,7 +284,12 @@
     }
 
     function getSetting(key) {
-      return staticData.settings[key] 
+      if (key == null) {
+        return staticData.settings
+      }
+      else {
+        return staticData.settings[key] 
+      }
     }
 
     function addLanguage(code, added, error) {

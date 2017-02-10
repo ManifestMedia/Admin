@@ -20,6 +20,7 @@
         service.adminInstalled = config.adminInstalled
         service.host = config.host
         $log.debug("-== Configuration Loaded... ==-")
+        $log.debug(response)
       })
 
     return service 

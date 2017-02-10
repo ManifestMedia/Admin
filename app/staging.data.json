@@ -206,8 +206,6 @@
 
          "id": 1,
 
-         "title": "Home",
-
          "author": "Simun Strukan",
 
          "date": "21.09.2015, 12:45",
@@ -215,6 +213,23 @@
          "articlesCount": 1,
 
          "published": true,
+
+         "title": {
+
+            "en" : "Home"
+
+         },
+
+         "languages": [
+
+            {
+
+               "code": "en",
+
+               "name": "English"
+
+            }
+         ],
 
          "subPages": []
 
@@ -224,8 +239,6 @@
 
          "id": 2,
 
-         "title": "About",
-
          "author": "Simun Strukan",
 
          "date": "21.09.2015, 13:00",
@@ -233,6 +246,23 @@
          "articlesCount": 1,
 
          "published": true,
+
+         "title": {
+
+            "en" : "About"
+
+         },
+
+         "languages": [
+
+            {
+
+               "code": "en",
+
+               "name": "English"
+
+            }
+         ],
 
          "subPages": []
 
@@ -242,8 +272,6 @@
 
          "id": 3,
 
-         "title": "Contact",
-
          "author": "Simun Strukan",
 
          "date": "21.09.2015, 13:15",
@@ -251,6 +279,23 @@
          "articlesCount": 1,
 
          "published": false,
+
+         "title": {
+
+            "en" : "Contact"
+
+         },
+
+         "languages": [
+
+            {
+
+               "code": "en",
+
+               "name": "English"
+
+            }
+         ],
 
          "subPages": []
 
@@ -260,8 +305,6 @@
 
          "id": 4,
 
-         "title": "Impressum",
-
          "author": "Simun Strukan",
 
          "date": "21.09.2015, 13:45",
@@ -269,6 +312,23 @@
          "articlesCount": 1,
 
          "published": false,
+
+         "title": {
+
+            "en" : "Home"
+
+         },
+
+         "languages": [
+
+            {
+
+               "code": "en",
+
+               "name": "English"
+
+            }
+         ],
 
          "subPages": []
 

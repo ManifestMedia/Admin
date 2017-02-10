@@ -9,7 +9,6 @@
   	if (config.adminInstalled) {
       var service = {
         get:    get,
-        all:    getAll,
         save:   save,
         create: create,
         update: update,
@@ -19,21 +18,23 @@
     else {
       var service = {
         get:            staging.setting,
-        all:            staging.settings,
         save:           staging.saveSettings,
         remove:         remove,
         removeLanguage: staging.removeLanguage,
         addLanguage:    staging.addLanguage
       } 
     }
+
+    var url = {
+      get:     /*GET*/    '/api/settings/',
+      create:  /*POST*/   '/api/setting/',
+      update:  /*PUT*/    '/api/setting/:id',
+      destroy: /*DELETE*/ '/api/setting/:id',
+    }
   	
   	return service
 
   	function get(id) {
-
-  	}
-
-  	function getAll() {
 
   	}
 
